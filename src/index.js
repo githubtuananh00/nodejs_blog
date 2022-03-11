@@ -16,18 +16,17 @@ app.engine('hbs', handlebars.engine({extname: '.hbs'}))
 
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources/views'))
-console.log(__dirname)
+
+// 
+app.use(express.urlencoded({extended:true})) // form HTML
+app.use(express.json())
 
 // HTTP logger
 app.use(morgan('combined'))
 
-
-app.get('/', (req, res) => {
-
-  res.render('home')
-})
-
-
+const routes = require('./routes/index')
+// routes
+routes(app)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
