@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect src/index.js",
-    "watch":"node-sass --watch src/resources/scss/ --output src/public/css/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "save": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss}"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,15 @@
   "homepage": "https://github.com/githubtuananh00/nodejs_blog#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "express-handlebars": "^6.0.3"
+    "express-handlebars": "^6.0.3",
+    "mongoose": "^6.2.6"
   },
   "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
     "morgan": "^1.10.0",
     "node-sass": "^7.0.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
   }
 }

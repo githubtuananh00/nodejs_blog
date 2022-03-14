@@ -1,10 +1,10 @@
 const searchRoute = require('./search')
 const siteRoute = require('./site')
-function routes(app){
-    
-    app.use('/search',searchRoute)
-    app.use('/',siteRoute)
-    
+const coursesRoute = require('./course')
+function routes(app) {
+	app.use('/courses', coursesRoute)
+	app.use('/search', searchRoute)
+	app.use('/', siteRoute)
 }
 
-module.exports = routes;
+module.exports = routes
