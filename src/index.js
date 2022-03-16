@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const methodOverride = require('method-override')
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
 
@@ -10,11 +11,16 @@ const port = 3000
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Templates engine
-app.engine('hbs', handlebars.engine({ extname: '.hbs' }))
+app.engine(
+	'hbs',
+	handlebars.engine({ extname: '.hbs', helpers: { sumOne: (a) => ++a } })
+)
 
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources', 'views'))
 
+// Override method
+app.use(methodOverride('_method'))
 //
 app.use(express.urlencoded({ extended: true })) // form HTML
 app.use(express.json())
