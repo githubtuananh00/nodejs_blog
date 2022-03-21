@@ -1,22 +1,22 @@
 <form class="mt-4" name="container-form" method="post" action="/courses/handle-form-action">
     <div>
-    <h3>My Courses</h3>
-    <a href="/me/trash/courses">Thùng rác {{#if deletedCount}} ({{deletedCount}}) {{/if}}</a>
-    <div class="mt-4 d-flex align-items-center">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
-        <label class="form-check-label" for="checkbox-all">
-          Chọn tất cả
-        </label>
+      <h3>My Courses</h3>
+      <a href="/me/trash/courses">Thùng rác {{#if deletedCount}} ({{deletedCount}}) {{/if}}</a>
+      <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="checkbox-all">
+          <label class="form-check-label" for="checkbox-all">
+            Chọn tất cả
+          </label>
+        </div>
+        <select class="form-select form-select-sm checkbox-select-all-option" aria-label="Default select example" name="action" required>
+          <option value="">Open this select menu</option>
+          <option value="delete">Xóa</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <button type="submit" class="btn btn-primary check-all-submit-btn" disabled>Áp dụng</button>
       </div>
-      <select class="form-select form-select-sm checkbox-select-all-option" aria-label="Default select example" name="action" required>
-        <option value="">Open this select menu</option>
-        <option value="delete">Xóa</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-      <button type="submit" class="btn btn-primary check-all-submit-btn disabled">Áp dụng</button>
-    </div>
     </div>
     <table class="table">
         <thead>
@@ -75,7 +75,7 @@
 
 
 
-{{!-- Delete hidden form --}}
+
 <form method="POST" name="delete-course-form"></form>
 
 <script>
@@ -86,8 +86,9 @@
     const courseItemCheckbox = $('input[name="coursesId[]"]')
     const checkAllSubmitBtn = $('.check-all-submit-btn')
 
-    let checkboxAll=$('#checkbox-all')
+    const checkboxAll=$('#checkbox-all')
 
+    // Form
     const deleteForm = document.forms['delete-course-form']
     const containerForm = document.forms['container-form']
 
@@ -114,17 +115,14 @@
       checkboxAll.prop('checked',isChecked)
       renderCheckboxSubmitBtn()
     })
-    // Check all submit click
-    //checkAllSubmitBtn.on('submit',function(){
-      
-    //})
+    
     // Re-render check-all submit button
     const renderCheckboxSubmitBtn = ()=>{
       const checkCount = $('input[name="coursesId[]"]:checked').length
       if (checkCount > 0){
-        checkAllSubmitBtn.removeClass('disabled')
+        checkAllSubmitBtn.attr('disabled',false)
       }else{
-        checkAllSubmitBtn.addClass('disabled')
+        checkAllSubmitBtn.attr('disabled',true)
       }
     }
     

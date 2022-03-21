@@ -69,6 +69,23 @@ class CourseController {
 				break
 		}
 	}
+	// [POST] /courses/trashForm-Action
+	trashFormAction(req, res, next) {
+		switch (req.body.action) {
+			case 'restore':
+				Course.restore({ _id: req.body.coursesId })
+					.then(() => res.redirect('back'))
+					.catch(next)
+				break
+			case 'delete':
+				Course.deleteMany({ _id: req.body.coursesId })
+					.then(() => res.redirect('back'))
+					.catch(next)
+				break
+			default:
+				break
+		}
+	}
 }
 
 module.exports = new CourseController()
