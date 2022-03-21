@@ -8,7 +8,7 @@ const app = express()
 const port = 3000
 
 // Static File
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '/public')))
 
 // Templates engine
 app.engine(
