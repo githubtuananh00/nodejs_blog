@@ -12,8 +12,8 @@
         <select class="form-select form-select-sm checkbox-select-all-option" aria-label="Default select example" name="action" required>
           <option value="">Open this select menu</option>
           <option value="delete">Xóa</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {{!-- <option value="2">Two</option>
+          <option value="3">Three</option> --}}
         </select>
         <button type="submit" class="btn btn-primary check-all-submit-btn" disabled>Áp dụng</button>
       </div>
@@ -22,9 +22,9 @@
         <thead>
             <tr>
                 <th scope="col" colspan="2">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Time</th>
+                <th scope="col">Name {{{sortable 'name' _sort}}}</th>
+                <th scope="col">Description {{{sortable 'description' _sort}}}</th>
+                <th scope="col">Time {{{sortable 'createdAt' _sort}}}</th>
                 <th scope="col"></th>
             </tr>
         </thead>
