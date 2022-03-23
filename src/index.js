@@ -17,25 +17,7 @@ app.engine(
 	'hbs',
 	handlebars.engine({
 		extname: '.hbs',
-		helpers: {
-			sumOne: (a) => ++a,
-			sortable: (field, sort) => {
-				const sortType = field === sort.column ? sort.type : 'default'
-				const icons = {
-					default: 'i',
-					desc: 'd',
-					asc: 'a',
-				}
-				const types = {
-					default: 'desc',
-					desc: 'asc',
-					asc: 'desc',
-				}
-				const icon = icons[sortType]
-				const type = types[sortType]
-				return `<a href="?_sort&column=${field}&type=${type}">${icon}</a>`
-			},
-		},
+		helpers: require('./helpers/handlebars'),
 	})
 )
 
